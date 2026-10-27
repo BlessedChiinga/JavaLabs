@@ -1,825 +1,1193 @@
-
+/* =========================================================
+   LUXURY LODGE THEME  -  "Emerald Noir"
+   Deep Emerald + Obsidian Green + Platinum
+   with Champagne Gold accents
+   Add this section at the VERY BOTTOM of style.css
+   (or replace the previous Luxury Lodge section entirely)
+   ========================================================= */
 .root {
-    -grass:          #5fb336;
-    -grass-bright:   #7cc94a;
-    -grass-deep:     #3f8a24;
-    -grass-dark:     #2a6118;
-    -lime:           #b6e35a;
-    -lime-soft:      #e4f4cc;
-    -leaf-border:    #b9d99b;
-    -paper:          #fbfdf6;
-    -ink:            #173a14;
-    -ink-soft:       #40633a;
-    -on-photo:       #eef8dc;
-    -on-photo-dim:   #c9e0a9;
-    -bad:            #c0392b;
-
-    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    -fx-font-size: 14px;
-    -fx-background-color: -grass-dark;
-    -fx-text-fill: -on-photo;
-    -fx-accent: -grass;
-    -fx-focus-color: -grass;
+    /* Core palette */
+    -grass: #10B981;
+    -grass-bright: #34D399;
+    -grass-deep: #059669;
+    -grass-dark: #08140F;
+    -lime: #6EE7B7;
+    -lime-soft: #D1FAE5;
+    -leaf-border: #A7F3D0;
+    -paper: #F7FBF8;
+    -ink: #12241B;
+    -ink-soft: #4B6558;
+    -on-photo: #F7FBF8;
+    -on-photo-dim: #C5D8CE;
+    -bad: #DC2626;
+    /* Extra luxury tokens */
+    -navy-950: #040B08;
+    -navy-900: #08140F;
+    -navy-800: #0E2118;
+    -navy-700: #143325;
+    -gold: #D4B26A;
+    -gold-light: #EBD9AA;
+    -gold-deep: #B08D45;
+    -platinum: #DCE8E1;
+    -fx-background-color: #08140F;
+    -fx-text-fill: #F7FBF8;
+    -fx-accent: #10B981;
+    -fx-focus-color: #34D399;
     -fx-faint-focus-color: transparent;
-    -fx-control-inner-background: white;
+    -fx-control-inner-background: #FFFFFF;
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
-
-/* Default label colour is for text sitting directly on the picture */
-.label {
-    -fx-text-fill: -on-photo;
-}
-
-/* Inside a light card, labels turn dark */
-.glass-card .label {
-    -fx-text-fill: -ink-soft;
-}
-
-/* ================= SCREEN BACKGROUNDS ================= */
-
-/* Fallback if the pictures are missing: a sky-to-grass gradient */
-.photo-background {
-    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #7fbfe6 0%, #cfe9c0 45%, #6bb83a 62%, #2f7a1e 100%);
-}
-
-/* Login screen (StackPane): the bright lodge scene */
+/* =========================================================
+   BACKGROUNDS
+   ========================================================= */
+.photo-background,
 StackPane.photo-background {
-    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #7fbfe6 0%, #cfe9c0 45%, #6bb83a 62%, #2f7a1e 100%);
-    -fx-background-image: url("lodge-login.jpg");
-    -fx-background-size: cover;
-    -fx-background-position: center center;
-    -fx-background-repeat: no-repeat;
+    -fx-background-color:
+            radial-gradient(center 20% 0%, radius 80%, rgba(16,185,129,0.22),
+            transparent),
+            linear-gradient(to bottom, #153426 0%, #08140F 70%, #040B08 100%);
 }
-
-/* Dashboard (BorderPane): the same scene, softened and darkened */
 BorderPane.photo-background {
-    -fx-background-color: #123a1c;
+    -fx-background-color: #08140F;
     -fx-background-image: url("lodge-dashboard.jpg");
     -fx-background-size: cover;
     -fx-background-position: center center;
     -fx-background-repeat: no-repeat;
 }
-
-/* ================= TYPOGRAPHY ================= */
-
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
 .page-title {
-    -fx-font-family: "Georgia", "Palatino Linotype", "Times New Roman", serif;
-    -fx-font-size: 32px;
-    -fx-font-weight: bold;
-    -fx-text-fill: white;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.50), 8, 0.2, 0, 2);
+    -fx-text-fill: #FFFFFF;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 14, 0.25, 0, 3);
 }
-
-.section-title {
-    -fx-font-family: "Georgia", "Palatino Linotype", "Times New Roman", serif;
-    -fx-font-size: 21px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #dcf7a0;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.45), 6, 0.2, 0, 1);
-}
-
+.section-title,
 .brand-title {
-    -fx-font-family: "Georgia", "Palatino Linotype", "Times New Roman", serif;
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #dcf7a0;
+    -fx-text-fill: #E4D2A0;
+    -fx-effect: dropshadow(gaussian, rgba(212,178,106,0.25), 8, 0.1, 0, 0);
 }
-
 .login-title {
-    -fx-font-family: "Georgia", "Palatino Linotype", "Times New Roman", serif;
-    -fx-font-size: 31px;
-    -fx-font-weight: bold;
-    -fx-text-fill: -ink;
+    -fx-text-fill: #FFFFFF;
 }
-
+/* Everything inside a card is now light-on-dark */
+.glass-card .label,
+.glass-card .check-box,
+.glass-card .radio-button {
+    -fx-text-fill: #DCE8E1;
+}
+.glass-card .page-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
+.glass-card .section-title,
+.glass-card .brand-title {
+    -fx-text-fill: #F0DFB0;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(212,178,106,0.35), 10, 0.15, 0, 0);
+}
 .muted-text {
-    -fx-font-size: 13.5px;
-    -fx-text-fill: -on-photo-dim;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 4, 0.2, 0, 1);
+    -fx-text-fill: #D3E5DA;
 }
-
-.field-label {
-    -fx-font-size: 13px;
+.glass-card .muted-text {
+    -fx-text-fill: #9DB8A9;
+}
+.field-label,
+.glass-card .field-label {
+    -fx-text-fill: #CFE5D9;
     -fx-font-weight: bold;
-    -fx-text-fill: -ink-soft;
-    -fx-padding: 0 10px 0 0;
 }
-
-.error-text {
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-text-fill: -bad;
+.error-text,
+.glass-card .error-text {
+    -fx-text-fill: #FCA5A5;
 }
-
-/* Context overrides: these must come after ".glass-card .label" */
-.glass-card .login-title { -fx-text-fill: -ink; }
-.glass-card .muted-text  { -fx-text-fill: -ink-soft; -fx-effect: none; }
-.glass-card .field-label { -fx-text-fill: -ink-soft; }
-.glass-card .error-text  { -fx-text-fill: -bad; }
-
-/* Round grass-green emblem on the login card */
+/* =========================================================
+   LOGIN EMBLEM (small card version)
+   ========================================================= */
 .lodge-icon,
 .glass-card .lodge-icon {
-    -fx-font-size: 36px;
+    -fx-background-color:
+            linear-gradient(to bottom right, #E4D2A0, #B08D45),
+            linear-gradient(to bottom right, #34D399, #047857);
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 50%, 50%;
+    -fx-border-color: rgba(255,255,255,0.9);
     -fx-text-fill: white;
-    -fx-alignment: CENTER;
-    -fx-min-width: 78px;
-    -fx-pref-width: 78px;
-    -fx-max-width: 78px;
-    -fx-min-height: 78px;
-    -fx-pref-height: 78px;
-    -fx-max-height: 78px;
-    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #8fd95a, #3f8a24);
-    -fx-background-radius: 999px;
-    -fx-border-color: rgba(255, 255, 255, 0.85);
-    -fx-border-radius: 999px;
-    -fx-border-width: 2px;
-    -fx-effect: dropshadow(gaussian, rgba(63, 138, 36, 0.55), 22, 0.1, 0, 4);
+    -fx-effect: dropshadow(gaussian, rgba(16,185,129,0.6), 26, 0.2, 0, 5);
 }
-
-/* ================= HEADER BAR ================= */
-
+/* =========================================================
+   HEADER
+   ========================================================= */
 .glass-header {
-    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, rgba(14, 50, 20, 0.94), rgba(22, 70, 28, 0.90));
-    -fx-border-color: transparent transparent rgba(182, 227, 90, 0.55) transparent;
-    -fx-border-width: 0 0 2px 0;
-    -fx-effect: dropshadow(gaussian, rgba(0, 20, 0, 0.45), 20, 0, 0, 6);
+    -fx-background-color:
+            linear-gradient(to bottom, rgba(16,40,29,0.99), rgba(6,16,11,0.98));
+    -fx-border-color: transparent transparent #D4B26A transparent;
+    -fx-border-width: 0 0 1.5px 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.65), 24, 0.12, 0, 7);
 }
-
 .user-chip {
-    -fx-background-color: rgba(182, 227, 90, 0.16);
-    -fx-background-radius: 999px;
-    -fx-border-color: rgba(182, 227, 90, 0.55);
-    -fx-border-radius: 999px;
-    -fx-border-width: 1px;
-    -fx-padding: 7px 15px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #dcf7a0;
-}
-
-/* ================= CARDS ================= */
-/* One class, three jobs: stat cards, form panels and the login card. */
-
-.glass-card {
-    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, rgba(255, 255, 255, 0.94), rgba(238, 249, 222, 0.93));
-    -fx-background-insets: 0;
+    -fx-background-color:
+            linear-gradient(to bottom, rgba(52,211,153,0.24), rgba(5,150,105,0.12));
     -fx-background-radius: 20px;
-    -fx-border-color: rgba(255, 255, 255, 0.80);
+    -fx-border-color: rgba(212,178,106,0.6);
     -fx-border-radius: 20px;
-    -fx-border-width: 1px;
-    -fx-padding: 24px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 25, 0, 0.40), 28, 0.10, 0, 10);
+    -fx-text-fill: #EBD9AA;
+    -fx-font-weight: bold;
 }
-
-/* The login card is the only glass-card that sits directly on the
-   screen root: bigger, with a green-to-lime frame. */
+/* =========================================================
+   GLASS CARDS
+   ========================================================= */
+.glass-card {
+    -fx-background-color:
+            radial-gradient(center 0% 0%, radius 90%, rgba(16,185,129,0.22),
+            transparent),
+            linear-gradient(to bottom, rgba(18,46,34,0.97), rgba(8,22,15,0.98));
+    -fx-border-color: linear-gradient(to bottom right, rgba(235,217,170,0.75),
+    rgba(52,211,153,0.35), rgba(212,178,106,0.55));
+    -fx-border-width: 1.2px;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.42), 30, 0.12, 0, 11);
+}
+.glass-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(5,150,105,0.35), 34, 0.14, 0, 12);
+}
 .photo-background > .glass-card {
-    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, rgba(255, 255, 255, 0.95), rgba(236, 248, 218, 0.96));
-    -fx-background-radius: 28px;
-    -fx-border-color: linear-gradient(from 0% 0% to 100% 100%, #b6e35a, #5fb336 60%, #3f8a24);
-    -fx-border-radius: 28px;
+    -fx-background-color:
+            radial-gradient(center 0% 0%, radius 90%, rgba(16,185,129,0.26),
+            transparent),
+            linear-gradient(to bottom, rgba(18,46,34,0.98), rgba(6,17,12,0.99));
+    -fx-border-color: linear-gradient(to bottom right, #EBD9AA, #10B981 45%, #D4B26A);
     -fx-border-width: 2px;
-    -fx-padding: 40px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 30, 0, 0.55), 44, 0.14, 0, 16);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 46, 0.15, 0, 16);
 }
-
-/* Stat card pieces */
+/* =========================================================
+   STATISTICS
+   ========================================================= */
 .stat-icon,
 .glass-card .stat-icon {
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
-    -fx-text-fill: -grass-deep;
-    -fx-alignment: CENTER;
-    -fx-min-width: 46px;
-    -fx-background-color: -lime-soft;
-    -fx-background-radius: 13px;
-    -fx-border-color: -leaf-border;
-    -fx-border-radius: 13px;
-    -fx-border-width: 1px;
-    -fx-padding: 7px 12px;
+    -fx-background-color: linear-gradient(to bottom right, #1E5A44, #0F2E22);
+    -fx-background-radius: 14px;
+    -fx-border-color: rgba(235,217,170,0.6);
+    -fx-border-radius: 14px;
+    -fx-text-fill: #F0DFB0;
+    -fx-effect: dropshadow(gaussian, rgba(16,185,129,0.35), 12, 0.1, 0, 3);
 }
-
 .stat-value,
 .glass-card .stat-value {
-    -fx-font-size: 29px;
+    -fx-text-fill: #FFFFFF;
     -fx-font-weight: bold;
-    -fx-text-fill: -ink;
 }
-
-/* Pricing note under the billing form (sits on the picture) */
+/* =========================================================
+   INFO PANEL
+   ========================================================= */
 .info-panel {
-    -fx-background-color: rgba(182, 227, 90, 0.18);
+    -fx-background-color:
+            linear-gradient(to right, rgba(16,185,129,0.28), rgba(16,185,129,0.12));
     -fx-background-radius: 14px;
-    -fx-border-color: rgba(182, 227, 90, 0.60);
+    -fx-border-color: rgba(110,231,183,0.6) rgba(110,231,183,0.3)
+    rgba(110,231,183,0.3) #D4B26A;
+    -fx-border-width: 1px 1px 1px 3px;
     -fx-border-radius: 14px;
-    -fx-border-width: 1px;
-    -fx-padding: 16px 20px;
-    -fx-text-fill: #e9f9c4;
-    -fx-line-spacing: 4px;
-    -fx-wrap-text: true;
+    -fx-text-fill: #ECFDF5;
 }
-
-/* ================= TEXT INPUTS ================= */
-
+/* =========================================================
+   INPUT FIELDS
+   ========================================================= */
 .text-field,
 .password-field,
 .text-area,
 .combo-box,
 .date-picker,
 .spinner {
-    -fx-background-color: #b9d99b, white;
+    -fx-background-color: #C5D8CE, #FFFFFF;
     -fx-background-insets: 0, 1;
-    -fx-background-radius: 11px, 10px;
-    -fx-text-fill: -ink;
-    -fx-prompt-text-fill: #8aa57f;
-    -fx-highlight-fill: -lime;
-    -fx-highlight-text-fill: -ink;
-    -fx-padding: 12px 14px;
-    -fx-font-size: 14px;
+    -fx-background-radius: 10px, 9px;
+    -fx-text-fill: #12241B;
+    -fx-prompt-text-fill: #8FA89A;
+    -fx-highlight-fill: #6EE7B7;
+    -fx-highlight-text-fill: #12241B;
 }
-
 .text-field:hover,
 .password-field:hover,
 .text-area:hover,
 .combo-box:hover,
 .date-picker:hover,
 .spinner:hover {
-    -fx-background-color: #8fc267, white;
+    -fx-background-color: #6EE7B7, #FFFFFF;
 }
-
 .text-field:focused,
 .password-field:focused,
 .text-area:focused,
 .combo-box:focused,
 .date-picker:focused,
-.date-picker:focus-within,
-.spinner:focused,
-.spinner:focus-within {
-    -fx-background-color: -grass, white;
-    -fx-background-insets: 0, 1.6;
-    -fx-background-radius: 11px, 9.5px;
-    -fx-effect: dropshadow(gaussian, rgba(95, 179, 54, 0.40), 14, 0.1, 0, 0);
+.spinner:focused {
+    -fx-background-color: #10B981, #FFFFFF;
+    -fx-effect: dropshadow(gaussian, rgba(16,185,129,0.45), 16, 0.12, 0, 0);
 }
-
-/* Login fields: roomier (padding only, so the states above still win) */
-.text-field.glass-input,
-.password-field.glass-input {
-    -fx-padding: 14px 16px;
-    -fx-font-size: 15px;
-}
-
-/* ---- Text area (reservation notes) ---- */
-.text-area {
-    -fx-padding: 0;
-}
-
-.text-area .content {
-    -fx-background-color: transparent;
-    -fx-padding: 12px 14px;
-}
-
-.text-area .scroll-pane,
-.text-area .scroll-pane .viewport {
-    -fx-background-color: transparent;
-}
-
-/* ---- Combo box / date picker / spinner share one box ---- */
-.combo-box,
-.date-picker,
-.spinner {
-    -fx-padding: 0;
-}
-
 .combo-box .list-cell {
-    -fx-background-color: transparent;
-    -fx-text-fill: -ink;
-    -fx-padding: 12px 14px;
+    -fx-text-fill: #12241B;
 }
-
 .combo-box-base > .arrow-button {
     -fx-background-color: transparent;
-    -fx-background-insets: 0;
-    -fx-background-radius: 0 10px 10px 0;
-    -fx-padding: 0 14px 0 8px;
+    -fx-background-radius: 0 9px 9px 0;
 }
-
-.combo-box-base > .arrow-button:hover {
-    -fx-background-color: -lime-soft;
-}
-
-.combo-box-base > .arrow-button > .arrow {
-    -fx-background-color: -grass-deep;
-}
-
-/* Editors nested inside date picker / spinner: no second border */
-.date-picker > .text-field,
-.date-picker > .text-field:hover,
-.date-picker > .text-field:focused,
-.spinner > .text-field,
-.spinner > .text-field:hover,
-.spinner > .text-field:focused {
-    -fx-background-color: transparent;
-    -fx-background-insets: 0;
-    -fx-effect: none;
-    -fx-padding: 12px 14px;
-}
-
-/* ---- Spinner (rooms, guests) ---- */
-.spinner > .increment-arrow-button,
-.spinner > .decrement-arrow-button {
-    -fx-background-color: transparent;
-    -fx-background-insets: 0;
-    -fx-background-radius: 0;
-    -fx-padding: 0 12px 0 8px;
-}
-
-.spinner > .increment-arrow-button:hover,
-.spinner > .decrement-arrow-button:hover {
-    -fx-background-color: -lime-soft;
-}
-
-.spinner > .increment-arrow-button:pressed,
-.spinner > .decrement-arrow-button:pressed {
-    -fx-background-color: #cfeaa4;
-}
-
+.combo-box-base > .arrow-button > .arrow,
+.date-picker > .arrow-button .arrow,
 .spinner .increment-arrow,
 .spinner .decrement-arrow {
-    -fx-background-color: -grass-deep;
+    -fx-background-color: #059669;
 }
-
-/* ---- Date picker (check-in / check-out) ---- */
-.date-picker > .arrow-button {
-    -fx-background-color: transparent;
-    -fx-background-insets: 0;
-    -fx-background-radius: 0 10px 10px 0;
-    -fx-padding: 0 14px 0 8px;
+.combo-box-base > .arrow-button:hover,
+.date-picker > .arrow-button:hover,
+.spinner > .increment-arrow-button:hover,
+.spinner > .decrement-arrow-button:hover {
+    -fx-background-color: #D1FAE5;
 }
-
-.date-picker > .arrow-button:hover {
-    -fx-background-color: -lime-soft;
-}
-
-.date-picker .arrow-button .arrow {
-    -fx-background-color: -grass-deep;
-}
-
-/* ---- Popups open in their own window: literal colours only ---- */
-
-.combo-box-popup > .list-view {
-    -fx-background-color: #b9d99b, #fbfdf6;
+/* =========================================================
+   DROPDOWNS & CALENDAR
+   ========================================================= */
+.combo-box-popup > .list-view,
+.date-picker-popup {
+    -fx-background-color: #C5D8CE, #F7FBF8;
     -fx-background-insets: 0, 1;
-    -fx-background-radius: 11px, 10px;
-    -fx-padding: 4px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 25, 0, 0.40), 20, 0.1, 0, 8);
+    -fx-background-radius: 10px, 9px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 20, 0.1, 0, 8);
 }
-
 .combo-box-popup .list-cell {
-    -fx-background-color: transparent;
-    -fx-background-radius: 8px;
-    -fx-text-fill: #173a14;
-    -fx-padding: 10px 12px;
+    -fx-text-fill: #12241B;
+    -fx-padding: 7px 12px 7px 12px;
 }
-
 .combo-box-popup .list-cell:hover,
-.combo-box-popup .list-cell:filled:focused {
-    -fx-background-color: #e4f4cc;
-    -fx-text-fill: #173a14;
+.combo-box-popup .list-cell:filled:focused,
+.date-picker-popup .day-cell:hover {
+    -fx-background-color: #D1FAE5;
+    -fx-text-fill: #12241B;
 }
-
-.combo-box-popup .list-cell:filled:selected {
-    -fx-background-color: #5fb336;
+.combo-box-popup .list-cell:filled:selected,
+.date-picker-popup .day-cell:selected {
+    -fx-background-color: linear-gradient(to bottom, #10B981, #047857);
     -fx-text-fill: white;
 }
-
-.date-picker-popup {
-    -fx-background-color: #b9d99b, #fbfdf6;
-    -fx-background-insets: 0, 1;
-    -fx-background-radius: 14px, 13px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 25, 0, 0.40), 24, 0.1, 0, 10);
-}
-
 .date-picker-popup > .month-year-pane {
-    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #3f8a24, #2a6118);
-    -fx-background-radius: 13px 13px 0 0;
+    -fx-background-color: linear-gradient(to right, #047857, #08140F);
 }
-
 .date-picker-popup > .month-year-pane .label {
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
-
-/* Month / year spinners inside the popup header: plain, on green */
-.date-picker-popup .spinner,
-.date-picker-popup .spinner:hover,
-.date-picker-popup .spinner:focused {
-    -fx-background-color: transparent;
-    -fx-background-insets: 0;
-    -fx-effect: none;
-    -fx-padding: 0;
-}
-
 .date-picker-popup .spinner .increment-arrow,
 .date-picker-popup .spinner .decrement-arrow {
-    -fx-background-color: #dcf7a0;
+    -fx-background-color: #A7F3D0;
 }
-
 .date-picker-popup .spinner .text-field {
     -fx-text-fill: white;
 }
-
-.date-picker-popup > .calendar-grid {
-    -fx-background-color: transparent;
-}
-
 .date-picker-popup .day-cell {
-    -fx-background-color: transparent;
-    -fx-background-radius: 8px;
-    -fx-text-fill: #173a14;
+    -fx-text-fill: #12241B;
 }
-
-.date-picker-popup .day-cell:hover {
-    -fx-background-color: #e4f4cc;
-}
-
-.date-picker-popup .day-cell:selected {
-    -fx-background-color: #5fb336;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-}
-
 .date-picker-popup .today {
-    -fx-border-color: #5fb336;
-    -fx-border-radius: 8px;
+    -fx-border-color: #D4B26A;
+    -fx-border-radius: 6px;
 }
-
-.date-picker-popup .day-name-cell,
-.date-picker-popup .week-number-cell {
-    -fx-text-fill: #6f8f62;
-}
-
-/* ================= BUTTONS ================= */
-/* Base = grass green. Variants re-declare every state so the base
-   hover / focus look never leaks into them. */
-
+/* =========================================================
+   PRIMARY BUTTONS
+   ========================================================= */
 .button {
-    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #7cc94a, #4a9a28);
-    -fx-background-insets: 0;
-    -fx-background-radius: 12px;
+    -fx-background-color:
+            #065F46,
+            linear-gradient(to bottom, #4ADE9E 0%, #10B981 45%, #059669 100%);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 12px, 11px;
     -fx-text-fill: white;
-    -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-padding: 12px 22px;
     -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(30, 90, 10, 0.40), 12, 0, 0, 4);
+    -fx-effect: dropshadow(gaussian, rgba(5,150,105,0.38), 14, 0.1, 0, 5);
 }
-
 .button:hover {
-    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #8fd95a, #55a830);
-    -fx-effect: dropshadow(gaussian, rgba(95, 179, 54, 0.55), 18, 0, 0, 5);
+    -fx-background-color:
+            #059669,
+            linear-gradient(to bottom, #86EFC0 0%, #34D399 45%, #10B981 100%);
+    -fx-effect: dropshadow(gaussian, rgba(52,211,153,0.6), 20, 0.12, 0, 6);
 }
-
 .button:pressed {
-    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #3f8a24, #347a1f);
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 6, 0, 0, 2);
+    -fx-background-color:
+            #064E3B,
+            #047857;
     -fx-translate-y: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(5,150,105,0.3), 6, 0.1, 0, 2);
 }
-
 .button:focused {
-    -fx-effect: dropshadow(gaussian, rgba(182, 227, 90, 0.75), 18, 0.1, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(212,178,106,0.65), 16, 0.12, 0, 0);
 }
-
 .button:disabled {
     -fx-opacity: 0.45;
-    -fx-cursor: default;
     -fx-effect: none;
 }
-
-/* Sign in, Save Bill & Receipt, Add Reservation, View / Print Receipt */
-.primary-button {
-    -fx-padding: 14px 30px;
-    -fx-font-size: 15px;
-}
-
-/* Calculate */
-.secondary-button {
-    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #ffffff, #eaf6da);
-    -fx-text-fill: -grass-dark;
-    -fx-border-color: #9fcc78;
-    -fx-border-radius: 12px;
-    -fx-border-width: 1px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 25, 0, 0.28), 8, 0, 0, 3);
-}
-
-.secondary-button:hover {
-    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #f4fbe8, #dcf0bd);
-    -fx-border-color: -grass;
-    -fx-effect: dropshadow(gaussian, rgba(0, 25, 0, 0.34), 10, 0, 0, 3);
-}
-
-.secondary-button:pressed {
-    -fx-background-color: #d3eaaf;
-    -fx-effect: none;
-}
-
+/* =========================================================
+   SECONDARY BUTTONS
+   ========================================================= */
+.secondary-button,
+.secondary-button:hover,
 .secondary-button:focused {
-    -fx-border-color: -grass-deep;
-    -fx-effect: dropshadow(gaussian, rgba(0, 25, 0, 0.28), 8, 0, 0, 3);
+    -fx-background-color:
+            #6EE7B7,
+            linear-gradient(to bottom, #FFFFFF, #E4EFE8);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 12px, 11px;
+    -fx-text-fill: #047857;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(6,20,14,0.14), 8, 0.1, 0, 3);
 }
-
-/* Header navigation, and the quiet "Clear" button on the billing form */
+.secondary-button:hover {
+    -fx-background-color:
+            #10B981,
+            linear-gradient(to bottom, #FFFFFF, #D1FAE5);
+    -fx-effect: dropshadow(gaussian, rgba(16,185,129,0.35), 14, 0.1, 0, 4);
+}
+.secondary-button:pressed {
+    -fx-background-color:
+            #10B981,
+            #D1FAE5;
+    -fx-effect: none;
+}
+/* =========================================================
+   NAVIGATION BUTTONS
+   ========================================================= */
 .nav-button {
     -fx-background-color: transparent;
-    -fx-text-fill: rgba(255, 255, 255, 0.82);
-    -fx-font-weight: normal;
-    -fx-alignment: CENTER;
-    -fx-padding: 10px 16px;
+    -fx-background-radius: 10px;
+    -fx-text-fill: #C5D8CE;
     -fx-effect: none;
 }
-
 .nav-button:hover {
-    -fx-background-color: rgba(255, 255, 255, 0.14);
-    -fx-text-fill: white;
-    -fx-effect: none;
+    -fx-background-color: rgba(52,211,153,0.16);
+    -fx-text-fill: #FFFFFF;
 }
-
 .nav-button:pressed {
-    -fx-background-color: rgba(255, 255, 255, 0.07);
-    -fx-translate-y: 0;
+    -fx-background-color: rgba(52,211,153,0.28);
 }
-
-.nav-button:focused {
-    -fx-effect: none;
-}
-
-/* Optional: add "nav-button-active" to the current page's button in code */
 .nav-button-active,
 .nav-button-active:hover,
 .nav-button-active:focused {
-    -fx-background-color: rgba(182, 227, 90, 0.26);
-    -fx-text-fill: #e6fbb0;
+    -fx-background-color:
+            linear-gradient(to bottom, rgba(16,185,129,0.34), rgba(16,185,129,0.16));
+    -fx-background-radius: 10px;
+    -fx-border-color: transparent transparent #D4B26A transparent;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-radius: 10px;
+    -fx-text-fill: #EBD9AA;
     -fx-font-weight: bold;
     -fx-effect: none;
 }
-
-/* Logout, and the "Delete selected" buttons */
+/* =========================================================
+   LOGOUT / DELETE
+   ========================================================= */
 .logout-button {
-    -fx-background-color: rgba(255, 110, 100, 0.16);
-    -fx-text-fill: #ffc2ba;
-    -fx-border-color: rgba(255, 140, 130, 0.60);
+    -fx-background-color: rgba(220,38,38,0.12);
+    -fx-background-insets: 0;
+    -fx-background-radius: 12px;
+    -fx-text-fill: #FCA5A5;
+    -fx-border-color: rgba(248,113,113,0.55);
     -fx-border-radius: 12px;
-    -fx-border-width: 1px;
     -fx-effect: none;
 }
-
 .logout-button:hover {
-    -fx-background-color: #c0392b;
+    -fx-background-color: linear-gradient(to bottom, #EF4444, #B91C1C);
     -fx-text-fill: white;
-    -fx-border-color: #e0655a;
-    -fx-effect: dropshadow(gaussian, rgba(160, 40, 30, 0.45), 14, 0, 0, 4);
+    -fx-border-color: #F87171;
+    -fx-effect: dropshadow(gaussian, rgba(220,38,38,0.5), 16, 0.1, 0, 4);
 }
-
-.logout-button:pressed {
-    -fx-background-color: #a32f23;
-    -fx-effect: none;
-}
-
-.logout-button:focused {
-    -fx-border-color: #ff9a92;
-    -fx-effect: none;
-}
-
-/* ================= TABLES (bills + reservations) ================= */
-
+/* =========================================================
+   TABLES
+   ========================================================= */
 .table-view {
-    -fx-background-color: #fbfdf6;
-    -fx-background-insets: 0;
-    -fx-background-radius: 14px;
-    -fx-border-color: rgba(255, 255, 255, 0.55);
-    -fx-border-radius: 14px;
-    -fx-border-width: 1px;
-    -fx-padding: 1px;
+    -fx-background-color: #F7FBF8;
+    -fx-background-radius: 12px;
+    -fx-border-color: #C5D8CE;
+    -fx-border-radius: 12px;
     -fx-table-cell-border-color: transparent;
-    -fx-effect: dropshadow(gaussian, rgba(0, 25, 0, 0.40), 22, 0.08, 0, 8);
 }
-
 .table-view .column-header-background {
-    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #5fb336, #3f8a24);
-    -fx-background-insets: 0;
-    -fx-background-radius: 13px 13px 0 0;
+    -fx-background-color:
+            linear-gradient(to bottom, #24473A, #0D1C15);
+    -fx-background-radius: 11px 11px 0 0;
+    -fx-border-color: transparent transparent #D4B26A transparent;
+    -fx-border-width: 0 0 2px 0;
 }
-
 .table-view .column-header,
 .table-view .filler {
     -fx-background-color: transparent;
-    -fx-size: 46px;
-    -fx-border-color: transparent rgba(255, 255, 255, 0.18) transparent transparent;
+    -fx-border-color: transparent rgba(255,255,255,0.10) transparent transparent;
+    -fx-size: 40px;
 }
-
 .table-view .column-header .label {
-    -fx-text-fill: white;
+    -fx-text-fill: #F1F8F4;
     -fx-font-weight: bold;
-    -fx-alignment: CENTER_LEFT;
 }
-
 .table-view .column-header .arrow {
-    -fx-background-color: white;
+    -fx-background-color: #EBD9AA;
 }
-
 .table-view .table-cell {
-    -fx-text-fill: #1f3d1a;
-    -fx-alignment: CENTER_LEFT;
-    -fx-padding: 12px 12px;
-    -fx-border-color: transparent;
+    -fx-text-fill: #12241B;
+    -fx-padding: 8px 10px 8px 10px;
 }
-
 .table-row-cell {
-    -fx-background-color: #fbfdf6;
-    -fx-background-insets: 0;
-    -fx-table-cell-border-color: transparent;
+    -fx-background-color: #F7FBF8;
+    -fx-cell-size: 42px;
 }
-
 .table-row-cell:odd {
-    -fx-background-color: #f0f8e6;
+    -fx-background-color: #EAF4EE;
 }
-
 .table-row-cell:hover {
-    -fx-background-color: #e0f1c6;
+    -fx-background-color: #D1FAE5;
 }
-
 .table-row-cell:selected {
-    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #c9e99a, #b6e06f);
+    -fx-background-color:
+            #A7F3D0,
+            linear-gradient(to right, #D4B26A 0, #D4B26A 3px, transparent 3px);
 }
-
 .table-row-cell:selected .table-cell {
-    -fx-text-fill: #10300c;
-    -fx-font-weight: bold;
+    -fx-text-fill: #0C1D15;
 }
-
-.table-row-cell:empty {
-    -fx-background-color: transparent;
-}
-
 .table-view .placeholder .label {
-    -fx-text-fill: #6f8f62;
-    -fx-font-size: 14px;
+    -fx-text-fill: #6B8576;
 }
-
-/* ================= SCROLLING ================= */
-
-.scroll-pane,
-.scroll-pane > .viewport,
-.scroll-pane > .corner,
-.transparent-scroll,
-.transparent-scroll > .viewport {
+/* =========================================================
+   SCROLLBARS
+   ========================================================= */
+.scroll-bar {
     -fx-background-color: transparent;
-    -fx-background-insets: 0;
-    -fx-padding: 0;
 }
-
-.scroll-bar:vertical,
-.scroll-bar:horizontal {
-    -fx-background-color: transparent;
-    -fx-padding: 2px;
-}
-
-.scroll-bar:vertical { -fx-pref-width: 12px; }
-.scroll-bar:horizontal { -fx-pref-height: 12px; }
-
 .scroll-bar > .track,
 .scroll-bar > .track-background {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
-
-/* On the picture: pale thumb */
+.scroll-bar > .increment-button,
+.scroll-bar > .decrement-button {
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
 .scroll-bar > .thumb {
-    -fx-background-color: rgba(255, 255, 255, 0.38);
-    -fx-background-insets: 0;
+    -fx-background-color: rgba(52,211,153,0.55);
     -fx-background-radius: 8px;
 }
-
 .scroll-bar > .thumb:hover {
-    -fx-background-color: rgba(182, 227, 90, 0.85);
+    -fx-background-color: #10B981;
 }
-
 .scroll-bar > .thumb:pressed {
-    -fx-background-color: #b6e35a;
+    -fx-background-color: #047857;
 }
-
-/* On light surfaces (tables, text boxes, popups): green thumb */
 .table-view .scroll-bar > .thumb,
 .text-area .scroll-bar > .thumb,
 .list-view .scroll-bar > .thumb {
-    -fx-background-color: #a9cf86;
+    -fx-background-color: #6EE7B7;
 }
-
 .table-view .scroll-bar > .thumb:hover,
 .text-area .scroll-bar > .thumb:hover,
 .list-view .scroll-bar > .thumb:hover {
-    -fx-background-color: #5fb336;
+    -fx-background-color: #10B981;
 }
-
-.scroll-bar > .increment-button,
-.scroll-bar > .decrement-button {
-    -fx-background-color: transparent;
-    -fx-padding: 0;
-}
-
-.scroll-bar .increment-arrow,
-.scroll-bar .decrement-arrow {
-    -fx-shape: " ";
-    -fx-padding: 0;
-}
-
-/* ================= RECEIPT PAPER ================= */
-/* Cream paper, monospace, green strip on top. Dark-on-light also
-   means it prints cleanly with PrinterJob. */
-
+/* =========================================================
+   RECEIPT
+   ========================================================= */
 .text-area.receipt-paper,
 .text-area.receipt-paper:hover,
 .text-area.receipt-paper:focused {
-    -fx-background-color: #5fb336, #fffef8;
-    -fx-background-insets: 0, 5px 0 0 0;
-    -fx-background-radius: 12px, 9px 9px 12px 12px;
-    -fx-font-family: "Consolas", "Courier New", "Monospaced", monospace;
-    -fx-font-size: 13.5px;
-    -fx-text-fill: #1f2a22;
-    -fx-highlight-fill: #cfeaa4;
-    -fx-highlight-text-fill: #10300c;
-    -fx-effect: dropshadow(gaussian, rgba(0, 25, 0, 0.35), 22, 0.08, 0, 8);
+    -fx-background-color: #D4B26A, #FFFEFB;
+    -fx-background-insets: 0, 1.5;
+    -fx-background-radius: 8px, 7px;
+    -fx-text-fill: #12241B;
+    -fx-highlight-fill: #A7F3D0;
+    -fx-highlight-text-fill: #12241B;
+    -fx-font-family: "Consolas", "Courier New", monospace;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 14, 0.1, 0, 5);
 }
-
-.text-area.receipt-paper .content {
-    -fx-background-color: transparent;
-    -fx-padding: 22px 26px;
-}
-
-.text-area.receipt-paper .scroll-pane,
-.text-area.receipt-paper .scroll-pane .viewport {
-    -fx-background-color: transparent;
-}
-
-/* ================= DIALOGS & ALERTS =================
-   Dialogs are separate windows, so they only pick this up when the
-   stylesheet is added to their DialogPane. Literal colours on purpose. */
-
+/* =========================================================
+   DIALOGS
+   ========================================================= */
 .dialog-pane {
-    -fx-background-color: #b9d99b, #fbfdf6;
+    -fx-background-color: #C5D8CE, #F7FBF8;
     -fx-background-insets: 0, 1;
-    -fx-background-radius: 18px, 17px;
-    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    -fx-effect: dropshadow(gaussian, rgba(0, 25, 0, 0.50), 30, 0.12, 0, 12);
 }
-
 .dialog-pane > .content.label {
-    -fx-text-fill: #173a14;
-    -fx-font-size: 14px;
-    -fx-padding: 20px 24px 12px 24px;
+    -fx-text-fill: #12241B;
 }
-
 .dialog-pane > .header-panel {
-    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #3f8a24, #2a6118);
-    -fx-background-radius: 17px 17px 0 0;
-    -fx-padding: 16px 22px;
+    -fx-background-color: linear-gradient(to right, #047857, #08140F);
+    -fx-border-color: transparent transparent #D4B26A transparent;
+    -fx-border-width: 0 0 2px 0;
 }
-
 .dialog-pane > .header-panel .label {
-    -fx-font-family: "Georgia", "Palatino Linotype", "Times New Roman", serif;
     -fx-text-fill: white;
-    -fx-font-size: 18px;
     -fx-font-weight: bold;
 }
-
 .alert.error > .header-panel {
-    -fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #c0392b, #922b21);
+    -fx-background-color: linear-gradient(to right, #DC2626, #7F1D1D);
 }
-
-.dialog-pane > .button-bar > .container {
-    -fx-padding: 12px 20px 18px 20px;
-}
-
-/* Dialog buttons: green by default, light for Close / No */
 .dialog-pane .button:cancel {
-    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #ffffff, #eaf6da);
-    -fx-text-fill: #2a6118;
-    -fx-border-color: #9fcc78;
+    -fx-background-color:
+            #6EE7B7,
+            linear-gradient(to bottom, #FFFFFF, #E4EFE8);
+    -fx-text-fill: #047857;
+    -fx-border-color: transparent;
+}
+.dialog-pane .button:cancel:hover {
+    -fx-background-color:
+            #10B981,
+            #D1FAE5;
+}
+/* =========================================================
+   TOOLTIPS
+   ========================================================= */
+.tooltip {
+    -fx-background-color: #D4B26A, #0D1C15;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 8px, 7px;
+    -fx-text-fill: #F7FBF8;
+    -fx-padding: 6px 10px 6px 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.45), 12, 0.1, 0, 4);
+}
+/* =========================================================
+   FULL-SCREEN LUXURY LODGE LOGIN
+   ========================================================= */
+.login-screen {
+    -fx-background-color: #040B08;
+}
+.login-layout {
+    -fx-background-color: #040B08;
+}
+/* ---------- Left branding panel ---------- */
+.login-branding {
+    -fx-background-color:
+            radial-gradient(center 15% 10%, radius 70%, rgba(16,185,129,0.28),
+            transparent),
+            linear-gradient(to bottom right, #17382A 0%, #08140F 58%, #0C1F17 100%);
+    -fx-border-color: transparent #D4B26A transparent transparent;
+    -fx-border-width: 0 1px 0 0;
+}
+.login-brand-icon {
+    -fx-min-width: 76px;
+    -fx-min-height: 76px;
+    -fx-pref-width: 76px;
+    -fx-pref-height: 76px;
+    -fx-alignment: center;
+    -fx-background-color:
+            linear-gradient(to bottom right, #EBD9AA, #B08D45),
+            linear-gradient(to bottom right, #34D399, #047857);
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 22px, 20px;
+    -fx-text-fill: white;
+    -fx-font-size: 38px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(16,185,129,0.55), 30, 0.2, 0, 7);
+}
+.login-brand-name {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8, 0.1, 0, 2);
+}
+.login-brand-subtitle {
+    -fx-text-fill: #D4B26A;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+.login-accent-line {
+    -fx-background-color: linear-gradient(to right, #EBD9AA, #D4B26A 40%, #059669);
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(212,178,106,0.45), 8, 0.1, 0, 0);
+}
+.login-hero-text {
+    -fx-text-fill: #F7FBF8;
+    -fx-font-size: 38px;
+    -fx-font-weight: bold;
+    -fx-line-spacing: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.15, 0, 3);
+}
+.login-description {
+    -fx-text-fill: #B5CDBE;
+    -fx-font-size: 15px;
+    -fx-line-spacing: 7px;
+}
+.login-footer {
+    -fx-text-fill: #86A394;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+/* ---------- Right login panel ---------- */
+.login-form-panel {
+    -fx-background-color:
+            linear-gradient(to bottom, #FAFDFB, #E4EFE8);
+}
+.login-form {
+    -fx-background-color: transparent;
+}
+.login-eyebrow {
+    -fx-text-fill: #B08D45;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+.login-form-title {
+    -fx-text-fill: #0C1D15;
+    -fx-font-size: 38px;
+    -fx-font-weight: bold;
+}
+.login-form-subtitle {
+    -fx-text-fill: #6B8576;
+    -fx-font-size: 14px;
+    -fx-line-spacing: 4px;
+}
+.login-form .field-label {
+    -fx-text-fill: #1F3A2E;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+.login-form .glass-input {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 12px;
+    -fx-border-color: #C5D8CE;
     -fx-border-radius: 12px;
     -fx-border-width: 1px;
-    -fx-effect: none;
+    -fx-padding: 0 14px;
+    -fx-text-fill: #12241B;
+    -fx-prompt-text-fill: #8FA89A;
+    -fx-font-size: 14px;
+    -fx-effect: innershadow(gaussian, rgba(6,20,14,0.06), 4, 0.1, 0, 1);
 }
-
-.dialog-pane .button:cancel:hover {
-    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #f4fbe8, #dcf0bd);
-    -fx-border-color: #5fb336;
+.login-form .glass-input:hover {
+    -fx-border-color: #6EE7B7;
 }
-
-/* ================= TOOLTIPS ================= */
-
-.tooltip {
-    -fx-background-color: #2a6118;
-    -fx-background-radius: 8px;
-    -fx-text-fill: white;
+.login-form .glass-input:focused {
+    -fx-border-color: #10B981;
+    -fx-border-width: 1.5px;
+    -fx-effect: dropshadow(gaussian, rgba(16,185,129,0.28), 12, 0.1, 0, 0);
+}
+.login-show-password {
+    -fx-text-fill: #4B6558;
     -fx-font-size: 12px;
-    -fx-padding: 8px 12px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 10, 0, 0, 3);
+}
+.login-show-password .box {
+    -fx-background-color: white;
+    -fx-border-color: #8FA89A;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+.login-show-password:selected .mark {
+    -fx-background-color: #FFFFFF;
+}
+.login-show-password:selected .box {
+    -fx-background-color: #059669;
+    -fx-border-color: #059669;
+}
+.login-required-label {
+    -fx-text-fill: #6B8576;
+    -fx-font-size: 9px;
+    -fx-font-weight: bold;
+}
+.login-submit-button {
+    -fx-background-color:
+            #064E3B,
+            linear-gradient(to right, #059669, #047857);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 12px, 11px;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(5,150,105,0.38), 16, 0.1, 0, 6);
+}
+.login-submit-button:hover {
+    -fx-background-color:
+            #059669,
+            linear-gradient(to right, #22C58B, #059669);
+    -fx-effect: dropshadow(gaussian, rgba(5,150,105,0.5), 20, 0.1, 0, 6);
+}
+.login-submit-button:pressed {
+    -fx-background-color:
+            #064E3B,
+            #065F46;
+    -fx-translate-y: 1px;
+}
+.login-security-note {
+    -fx-text-fill: #6B8576;
+    -fx-font-size: 11px;
+}
+.login-form .error-text {
+    -fx-text-fill: #B91C1C;
+    -fx-font-size: 12px;
+}
+/* =========================================================
+   DARK INNER SURFACES  -  no white anywhere
+   (inputs, tables, dropdowns, calendar, dialogs, receipt,
+    login form). Keep this section LAST in the file.
+   ========================================================= */
+.root {
+    -fx-base: #0D2A1F;
+    -fx-background: #08140F;
+    -fx-control-inner-background: #0F2A20;
+    -fx-control-inner-background-alt: #12301F;
+}
+/* ---------- Inputs ---------- */
+.text-field,
+.password-field,
+.text-area,
+.combo-box,
+.date-picker,
+.spinner {
+    -fx-background-color: #2A5A45, #0F2A20;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 10px, 9px;
+    -fx-text-fill: #EAF5EE;
+    -fx-prompt-text-fill: #7FA08E;
+    -fx-highlight-fill: #10B981;
+    -fx-highlight-text-fill: #FFFFFF;
+}
+.text-field:hover,
+.password-field:hover,
+.text-area:hover,
+.combo-box:hover,
+.date-picker:hover,
+.spinner:hover {
+    -fx-background-color: #34D399, #12331F;
+}
+.text-field:focused,
+.password-field:focused,
+.text-area:focused,
+.combo-box:focused,
+.date-picker:focused,
+.spinner:focused {-fx-background-color: #D4B26A, #0F2A20;-fx-effect: dropshadow(gaussian, rgba(212,178,106,0.40), 16, 0.12, 0, 0);
+}
+.text-area .content,
+.text-area .viewport {-fx-background-color: #0F2A20;
+}
+.combo-box .list-cell,
+.combo-box-base .text-field {-fx-text-fill: #EAF5EE;-fx-background-color: transparent;
+}
+.combo-box-base > .arrow-button > .arrow,
+.date-picker > .arrow-button .arrow,
+.spinner .increment-arrow,
+.spinner .decrement-arrow {-fx-background-color: #6EE7B7;
+}
+.combo-box-base > .arrow-button:hover,
+.date-picker > .arrow-button:hover,
+.spinner > .increment-arrow-button:hover,
+.spinner > .decrement-arrow-button:hover {-fx-background-color: #17382A;
+}
+/* ---------- Dropdowns & calendar ---------- */
+.combo-box-popup > .list-view,
+.date-picker-popup {-fx-background-color: #2A5A45, #0D2219;-fx-background-insets: 0, 1;-fx-background-radius: 10px, 9px;
+}
+.combo-box-popup .list-cell {-fx-background-color: transparent;-fx-text-fill: #EAF5EE;
+}
+.combo-box-popup .list-cell:hover,
+.combo-box-popup .list-cell:filled:focused,
+.date-picker-popup .day-cell:hover {
+    -fx-background-color: #17382A;
+    -fx-text-fill: #FFFFFF;
+}
+.combo-box-popup .list-cell:filled:selected,
+.date-picker-popup .day-cell:selected {
+    -fx-background-color: linear-gradient(to bottom, #10B981, #047857);
+    -fx-text-fill: #FFFFFF;
+}
+.date-picker-popup .day-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #EAF5EE;
+}
+.date-picker-popup .day-name-cell,
+.date-picker-popup .week-number-cell {
+    -fx-text-fill: #D4B26A;
+}
+.date-picker-popup .other-month {
+    -fx-text-fill: #5F7F6F;
+}
+/* ---------- Tables ---------- */
+.table-view {
+    -fx-background-color: #0D2219;
+    -fx-border-color: #1F4A38;
+}
+.table-view .table-cell {
+    -fx-text-fill: #EAF5EE;
+}
+.table-row-cell {
+    -fx-background-color: #0D2219;
+}
+.table-row-cell:odd {
+    -fx-background-color: #11291F;
+}
+.table-row-cell:hover {
+    -fx-background-color: #17382A;
+}
+.table-row-cell:selected {
+    -fx-background-color:
+            #1E5A44,
+            linear-gradient(to right, #D4B26A 0, #D4B26A 3px, transparent 3px);
+}
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: #FFFFFF;
+}
+.table-view .placeholder .label {
+    -fx-text-fill: #7FA08E;
+}
+/* ---------- Receipt ---------- */
+.text-area.receipt-paper,
+.text-area.receipt-paper:hover,
+.text-area.receipt-paper:focused {
+    -fx-background-color: #D4B26A, #0F261C;
+    -fx-text-fill: #F0DFB0;
+    -fx-highlight-fill: #1E5A44;
+    -fx-highlight-text-fill: #FFFFFF;
+}
+.text-area.receipt-paper .content {
+    -fx-background-color: #0F261C;
+}
+/* ---------- Dialogs ---------- */
+.dialog-pane {
+    -fx-background-color: #2A5A45, #0D2219;
+    -fx-background-insets: 0, 1;
+}
+.dialog-pane > .content.label,
+.dialog-pane .label {
+    -fx-text-fill: #EAF5EE;
+}
+.dialog-pane .button:cancel {
+    -fx-background-color:
+            #34D399,
+            linear-gradient(to bottom, #17382A, #0F2A20);
+    -fx-text-fill: #A7F3D0;
+    -fx-border-color: transparent;
+}
+.dialog-pane .button:cancel:hover {
+    -fx-background-color:
+            #6EE7B7,
+            #1E5A44;
+}
+/* ---------- Secondary buttons (dark glass) ---------- */
+.secondary-button,
+.secondary-button:hover,
+.secondary-button:focused {
+    -fx-background-color:
+            #34D399,
+            linear-gradient(to bottom, #17382A, #0F2A20);
+    -fx-text-fill: #A7F3D0;
+}
+.secondary-button:hover {
+    -fx-background-color:
+            #6EE7B7,
+            linear-gradient(to bottom, #1E5A44, #14402F);
+}
+.secondary-button:pressed {
+    -fx-background-color:
+            #34D399,
+            #0F2A20;
+}
+/* ---------- Login form panel ---------- */
+.login-form-panel {
+    -fx-background-color:
+            radial-gradient(center 80% 0%, radius 80%, rgba(16,185,129,0.18),
+            transparent),
+            linear-gradient(to bottom, #0E2118, #08140F);
+}
+.login-eyebrow {
+    -fx-text-fill: #D4B26A;
+}
+.login-form-title {
+    -fx-text-fill: #FFFFFF;
+}
+.login-form-subtitle {
+    -fx-text-fill: #9DB8A9;
+}
+.login-form .field-label {
+    -fx-text-fill: #CFE5D9;
+}
+.login-form .glass-input {
+    -fx-background-color: #0F2A20;
+    -fx-border-color: #2A5A45;
+    -fx-text-fill: #EAF5EE;
+    -fx-prompt-text-fill: #7FA08E;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.35), 4, 0.1, 0, 1);
+}
+.login-form .glass-input:hover {
+    -fx-border-color: #34D399;
+}
+.login-form .glass-input:focused {
+    -fx-border-color: #D4B26A;
+    -fx-effect: dropshadow(gaussian, rgba(212,178,106,0.30), 12, 0.1, 0, 0);
+}
+.login-show-password {
+    -fx-text-fill: #B5CDBE;
+}
+.login-show-password .box {
+    -fx-background-color: #0F2A20;
+    -fx-border-color: #3C7A60;
+}
+.login-required-label,
+.login-security-note {
+    -fx-text-fill: #7FA08E;
+}
+.login-form .error-text {
+    -fx-text-fill: #FCA5A5;
+}
+/* =========================================================
+   LOGIN REFINEMENT  -  Emerald + Gold showpiece
+   Keep this section LAST in the file.
+   ========================================================= */
+.login-screen,
+.login-layout {
+    -fx-background-color: #040B08;
+}
+/* ---------- Left: brand panel ---------- */
+.login-branding {
+    -fx-background-color:
+            radial-gradient(center 0% 100%, radius 70%, rgba(212,178,106,0.20),
+            transparent),
+            radial-gradient(center 100% 0%, radius 80%, rgba(16,185,129,0.30),
+            transparent),
+            linear-gradient(to bottom right, #143325 0%, #08140F 60%, #06100B 100%);
+    -fx-border-color: transparent rgba(212,178,106,0.55) transparent transparent;
+    -fx-border-width: 0 1px 0 0;
+}
+.login-brand-icon {
+    -fx-min-width: 80px;
+    -fx-min-height: 80px;
+    -fx-pref-width: 80px;
+    -fx-pref-height: 80px;
+    -fx-alignment: center;
+    -fx-background-color:
+            linear-gradient(to bottom right, #F6E8BC, #B08D45),
+            linear-gradient(to bottom right, #14503B, #06150F);
+    -fx-background-insets: 0, 2.5;
+    -fx-background-radius: 24px, 22px;
+    -fx-text-fill: #F0DFB0;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(212,178,106,0.45), 30, 0.2, 0, 6);
+}
+.login-brand-name {
+    -fx-text-fill: linear-gradient(to bottom, #FFF6D8, #D4B26A);
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 8, 0.1, 0, 2);
+}
+.login-brand-subtitle {
+    -fx-text-fill: #D4B26A;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+.login-accent-line {
+    -fx-background-color: linear-gradient(to right, #F0DFB0, #D4B26A 50%,
+    rgba(212,178,106,0));
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(212,178,106,0.5), 8, 0.1, 0, 0);
+}
+.login-hero-text {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 12, 0.2, 0, 3);
+}
+.login-description {
+    -fx-text-fill: #A9C2B3;
+    -fx-font-size: 15px;
+}
+.login-footer {
+    -fx-text-fill: #6F8F7E;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+/* ---------- Right: form panel ---------- */
+.login-form-panel {
+    -fx-background-color:
+            radial-gradient(center 100% 0%, radius 70%, rgba(16,185,129,0.16),
+            transparent),
+            radial-gradient(center 0% 100%, radius 60%, rgba(212,178,106,0.08),
+            transparent),
+            linear-gradient(to bottom, #0C1D15, #07110C);
+}
+.login-eyebrow {
+    -fx-text-fill: #D4B26A;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+.login-form-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 38px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8, 0.1, 0, 2);
+}
+.login-form-subtitle {
+    -fx-text-fill: #9DB8A9;
+    -fx-font-size: 14px;
+}
+.login-form .field-label {
+    -fx-text-fill: #CFE5D9;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+.login-form .glass-input {
+    -fx-min-height: 46px;
+    -fx-background-color: #0F2A20;
+    -fx-background-radius: 12px;
+    -fx-border-color: #2A5A45;
+    -fx-border-radius: 12px;
+    -fx-border-width: 1px;
+    -fx-padding: 0 16px 0 16px;
+    -fx-text-fill: #EAF5EE;
+    -fx-prompt-text-fill: #6F8F7E;
+    -fx-font-size: 14px;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.4), 5, 0.1, 0, 1);
+}
+.login-form .glass-input:hover {
+    -fx-border-color: #34D399;
+}
+.login-form .glass-input:focused {
+    -fx-background-color: #12331F;
+    -fx-border-color: #D4B26A;
+    -fx-border-width: 1.5px;
+    -fx-effect: dropshadow(gaussian, rgba(212,178,106,0.35), 14, 0.1, 0, 0);
+}
+.login-show-password {
+    -fx-text-fill: #B5CDBE;
+    -fx-font-size: 12px;
+}
+.login-show-password .box {
+    -fx-background-color: #0F2A20;
+    -fx-border-color: #3C7A60;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+.login-show-password:selected .box {
+    -fx-background-color: #D4B26A;
+    -fx-border-color: #D4B26A;
+}
+.login-show-password:selected .mark {
+    -fx-background-color: #0B1A12;
+}
+.login-required-label,
+.login-security-note {
+    -fx-text-fill: #7FA08E;
+}
+/* ---------- Gold sign-in button ---------- */
+.login-submit-button {
+    -fx-min-height: 48px;
+    -fx-background-color:
+            #8A6B2C,
+            linear-gradient(to bottom, #F6E8BC 0%, #D4B26A 55%, #B08D45 100%);
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 12px, 11px;
+    -fx-text-fill: #1A1405;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(212,178,106,0.45), 18, 0.1, 0, 6);
+}
+.login-submit-button:hover {
+    -fx-background-color:
+            #B08D45,
+            linear-gradient(to bottom, #FFF3CF 0%, #E4C77F 55%, #C29E52 100%);
+    -fx-effect: dropshadow(gaussian, rgba(240,223,176,0.65), 24, 0.12, 0, 6);
+}
+.login-submit-button:pressed {
+    -fx-background-color:
+            #8A6B2C,
+            linear-gradient(to bottom, #C29E52, #A98239);
+    -fx-translate-y: 1px;
+}
+.login-submit-button:focused {
+    -fx-effect: dropshadow(gaussian, rgba(240,223,176,0.7), 20, 0.12, 0, 0);
+}
+.login-form .error-text {
+    -fx-text-fill: #FCA5A5;
+    -fx-font-size: 12px;
+}
+/* =========================================================
+   DATE PICKER POPUP  -  visible numbers, shining month
+   Keep this section LAST in the file.
+   ========================================================= */
+.date-picker-popup {
+    -fx-background-color: #D4B26A, #0D2219;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 12px, 11px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 24, 0.12, 0, 8);
+}
+.date-picker-popup > .calendar-grid,
+.date-picker-popup .calendar-grid {
+    -fx-background-color: #0D2219;
+}
+/* ---------- Month / year header ---------- */
+.date-picker-popup > .month-year-pane {
+    -fx-background-color:
+            linear-gradient(to bottom, #1B5E45, #0B2418);
+    -fx-background-radius: 11px 11px 0 0;
+    -fx-border-color: transparent transparent #D4B26A transparent;
+    -fx-border-width: 0 0 1.5px 0;
+}
+.date-picker-popup > .month-year-pane .label {
+    -fx-text-fill: #FFF3CF;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(240,223,176,0.75), 10, 0.25, 0, 0);
+}
+.date-picker-popup > .month-year-pane .spinner,
+.date-picker-popup > .month-year-pane .spinner .text-field {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-text-fill: #FFF3CF;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(240,223,176,0.7), 10, 0.25, 0, 0);
+}
+.date-picker-popup .spinner > .increment-arrow-button,
+.date-picker-popup .spinner > .decrement-arrow-button {
+    -fx-background-color: transparent;
+}
+.date-picker-popup .spinner > .increment-arrow-button:hover,
+.date-picker-popup .spinner > .decrement-arrow-button:hover {
+    -fx-background-color: rgba(240,223,176,0.18);
+    -fx-background-radius: 6px;
+}
+.date-picker-popup .spinner .increment-arrow,
+.date-picker-popup .spinner .decrement-arrow {
+    -fx-background-color: #F0DFB0;
+}
+/* ---------- Day numbers ---------- */
+.date-picker-popup .day-name-cell,
+.date-picker-popup .week-number-cell {
+    -fx-text-fill: #E4C77F;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+.date-picker-popup .day-cell,
+.date-picker-popup > .calendar-grid > .day-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+}
+.date-picker-popup .day-cell:hover {
+    -fx-background-color: #1E5A44;
+    -fx-text-fill: #FFFFFF;
+}
+.date-picker-popup .day-cell.previous-month,
+.date-picker-popup .day-cell.next-month {
+    -fx-text-fill: #7FA08E;
+    -fx-font-weight: normal;
+}
+.date-picker-popup .day-cell:disabled {
+    -fx-text-fill: #4E6B5C;
+    -fx-opacity: 1;
+}
+.date-picker-popup .today {
+    -fx-border-color: #D4B26A;
+    -fx-border-radius: 8px;
+    -fx-text-fill: #F0DFB0;
+}
+.date-picker-popup .day-cell:selected,
+.date-picker-popup .day-cell:focused:selected {
+    -fx-background-color: linear-gradient(to bottom, #F6E8BC, #D4B26A 55%, #B08D45);
+    -fx-text-fill: #1A1405;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(212,178,106,0.6), 10, 0.1, 0, 0);
 }

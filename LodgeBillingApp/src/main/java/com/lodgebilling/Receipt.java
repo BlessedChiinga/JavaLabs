@@ -1,50 +1,83 @@
+
 package com.lodgebilling;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class Receipt {
 
+    private static final DateTimeFormatter DATE_FORMAT =
+            DateTimeFormatter.ofPattern("dd MMM yyyy  |  HH:mm");
+
+    private Receipt() {
+        // Utility class: no object is required.
+    }
+
     public static String format(Bill bill) {
-        DateTimeFormatter formatter =
-                DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
+        if (bill == null) {
+            throw new IllegalArgumentException(
+                    "Cannot create a receipt without a bill."
+            );
+        }
+
+        String line = "================================================";
+        String divider = "------------------------------------------------";
 
         return """
-                ========================================
-                       LODGE BILLING SYSTEM
-                            GUEST RECEIPT
-                ========================================
+                %s
+                           L U X U R Y   L O D G E
+                           GUEST PAYMENT RECEIPT
+                %s
 
-                Receipt No:  %s
-                Date:        %s
+                Receipt Number : %s
+                Date           : %s
 
-                Guest:       %s
-                Room:        %s
-                Nights:      %d
+                GUEST DETAILS
+                %s
+                Guest Name     : %s
+                Room Type      : %s
+                Nights Stayed  : %d
 
-                ----------------------------------------
-                Room charge:       K %10.2f
-                Discount:          K %10.2f
-                Extras:            K %10.2f
-                ----------------------------------------
-                TOTAL:             K %10.2f
-                Amount paid:       K %10.2f
-                BALANCE:           K %10.2f
-                ========================================
+                PAYMENT SUMMARY
+                %s
+                Room Charge    : %s
+                Discount       : %s
+                Extra Charges  : %s
+                %s
+                TOTAL BILL     : %s
+                Amount Paid    : %s
+                BALANCE DUE    : %s
 
-                   Thank you for staying with us!
-                ========================================
+                PAYMENT STATUS : %s
+
+                %s
+                    Thank you for choosing our lodge.
+                    We hope to welcome you again!
+                %s
                 """.formatted(
+                line,
+                line,
                 bill.getBillNumber(),
-                bill.getDate().format(formatter),
+                bill.getDate().format(DATE_FORMAT),
+                divider,
                 bill.getGuest(),
                 bill.getRoom(),
                 bill.getNights(),
-                bill.getRoomCharge(),
-                bill.getDiscount(),
-                bill.getExtras(),
-                bill.getTotal(),
-                bill.getPaid(),
-                bill.getBalance()
+                divider,
+                money(bill.getRoomCharge()),
+                money(bill.getDiscount()),
+                money(bill.getExtras()),
+                divider,
+                money(bill.getTotal()),
+                money(bill.getPaid()),
+                money(bill.getBalance()),
+                bill.getPaymentStatus(),
+                line,
+                line
         );
+    }
+
+    private static String money(double amount) {
+        return String.format(Locale.ROOT, "K %,.2f", amount);
     }
 }
