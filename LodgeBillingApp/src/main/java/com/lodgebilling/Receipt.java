@@ -25,7 +25,7 @@ public class Receipt {
 
         return """
                 %s
-                           L U X U R Y   L O D G E
+                           HORIZON 21   L O D G E
                            GUEST PAYMENT RECEIPT
                 %s
 

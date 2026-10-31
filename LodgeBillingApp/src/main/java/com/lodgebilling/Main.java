@@ -15,7 +15,7 @@ public class Main extends Application {
     private final LodgeController controller = new LodgeController();
 
     private static final String APP_TITLE =
-            "Luxury Lodge | Billing Management System";
+            "Horizon 21 | Billing Management System";
 
     private static final double MIN_WIDTH = 1050;
     private static final double MIN_HEIGHT = 700;

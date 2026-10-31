@@ -1,4 +1,3 @@
-
 package com.lodgebilling;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -70,7 +69,7 @@ public class DashboardView {
         header.setAlignment(Pos.CENTER_LEFT);
         header.getStyleClass().add("glass-header");
 
-        Label brand = new Label("⌂  LUXURY LODGE");
+        Label brand = new Label("⌂  Horizon 21");
         brand.getStyleClass().add("brand-title");
 
         Region spacer = new Region();
@@ -80,6 +79,7 @@ public class DashboardView {
         Button billing = navButton("Billing");
         Button reservations = navButton("Reservations");
         Button bills = navButton("Saved Bills");
+        Button help = navButton("Help");
 
         Label user = new Label("●  " + username);
         user.getStyleClass().add("user-chip");
@@ -91,28 +91,13 @@ public class DashboardView {
         billing.setOnAction(e -> showBilling());
         reservations.setOnAction(e -> showReservations());
         bills.setOnAction(e -> showBills());
+        help.setOnAction(e -> showHelp());
 
-        logout.setOnAction(e -> {
-            Alert alert = new Alert(
-                    Alert.AlertType.CONFIRMATION,
-                    "Do you want to log out?",
-                    ButtonType.YES,
-                    ButtonType.NO
-            );
-
-            alert.setTitle("Logout");
-            alert.setHeaderText("End your session?");
-
-            alert.showAndWait().ifPresent(answer -> {
-                if (answer == ButtonType.YES) {
-                    main.showLogin();
-                }
-            });
-        });
+        logout.setOnAction(e -> confirmLogout());
 
         header.getChildren().addAll(
                 brand, spacer, dashboard, billing,
-                reservations, bills, user, logout
+                reservations, bills, help, user, logout
         );
 
         return header;
@@ -834,6 +819,15 @@ public class DashboardView {
         content.getChildren().add(panel);
     }
 
+    private void showHelp() {
+        setPage(
+                "Help & Support",
+                "Contact the admin, report a problem, or find quick answers."
+        );
+
+        content.getChildren().add(HelpView.build(username));
+    }
+
     private TableView<Bill> createBillTable() {
         TableView<Bill> table = new TableView<>();
 
@@ -1005,6 +999,52 @@ public class DashboardView {
         return exception.getMessage() == null
                 ? "Please check the entered values."
                 : exception.getMessage();
+    }
+
+    private void confirmLogout() {
+        ButtonType logoutButton = new ButtonType(
+                "Yes, Log Out",
+                ButtonBar.ButtonData.OK_DONE
+        );
+        ButtonType stayButton = new ButtonType(
+                "Stay Logged In",
+                ButtonBar.ButtonData.CANCEL_CLOSE
+        );
+
+        Alert alert = new Alert(
+                Alert.AlertType.NONE,
+                "You will need to sign in again to continue using Horizon 21.",
+                logoutButton,
+                stayButton
+        );
+
+        alert.setTitle("Logout");
+        alert.setHeaderText("End your session?");
+
+        Label icon = new Label("⏻");
+        icon.getStyleClass().add("logout-dialog-icon");
+        alert.setGraphic(icon);
+
+        styleDialog(alert);
+        alert.getDialogPane().getStyleClass().add("logout-dialog");
+        alert.getDialogPane().setMinWidth(460);
+
+        alert.showAndWait().ifPresent(answer -> {
+            if (answer == logoutButton) {
+                main.showLogin();
+            }
+        });
+    }
+
+    private void styleDialog(Dialog<?> dialog) {
+        DialogPane pane = dialog.getDialogPane();
+
+        if (root.getScene() != null) {
+            dialog.initOwner(root.getScene().getWindow());
+            pane.getStylesheets().addAll(root.getScene().getStylesheets());
+        }
+
+        pane.getStylesheets().addAll(root.getStylesheets());
     }
 
     private void showInfo(String title, String message) {
